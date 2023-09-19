@@ -26,9 +26,12 @@ namespace TesteAdoNET.Helper
 
         public Usuarios BuscarSessao()
         {
-            string sessaoAtiva = _httpContext.Session["usuario"].ToString() ?? "";
+            string sessaoAtiva;
+            if (_httpContext.Session["usuario"] == null) sessaoAtiva = "";
+            else sessaoAtiva = _httpContext.Session["usuario"].ToString();
 
-            return JsonConvert.DeserializeObject<Usuarios>(sessaoAtiva);
+            if (String.IsNullOrEmpty(sessaoAtiva)) return new Usuarios { Id = 0 };
+            else return JsonConvert.DeserializeObject<Usuarios>(sessaoAtiva);
         }
 
         public void CriarSessao(Usuarios usuario)

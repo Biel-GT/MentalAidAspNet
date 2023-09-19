@@ -18,8 +18,8 @@
 else if (Model != null)
 {*@
 <ul class="navbar-nav">
-    <li>@Html.ActionLink("Dashboard", "Dashboard", "Home", routeValues: Model, htmlAttributes: new { id = "dashboardLink", @class = "navbar-brand text-white", @style = "font-size: .9em" })</li>
-    <li>@Html.ActionLink("Lung Simulator", "Game", "Home", routeValues: Model, htmlAttributes: new { id = "registerLink", @class = "navbar-brand text-white", @style = "font-size: .9em" })</li>
+    <li>@Html.ActionLink("Dashboard", "Dashboard", "Home", htmlAttributes: new { id = "dashboardLink", @class = "navbar-brand text-white", @style = "font-size: .9em" })</li>
+    <li>@Html.ActionLink("Lung Simulator", "Game", "Home", htmlAttributes: new { id = "registerLink", @class = "navbar-brand text-white", @style = "font-size: .9em" })</li>
     @*<li>@Html.ActionLink("Testes", "Testes", "Home", routeValues: null, htmlAttributes: new { id = "testesLink", @class = "navbar-brand text-white", @style = "font-size: .9em" })</li>*@
     @*<li>@Html.ActionLink("Realizar Teste de Ansiedade", Href("https://g1.globo.com/fantastico/interatividade/quiz/ansiedade-faca-o-teste-e-descubra-o-nivel-que-voce-esta.ghtml"), routeValues: null, htmlAttributes: new { id = "testesLink", @class = "navbar-brand text-white", @style = "font-size: .9em", @target = "_blank", @rel = "noopener" })</li>*@
     <li>@Html.ActionLink("Logout", "Logout", "Home", routeValues: null, htmlAttributes: new { id = "logoutLink", @class = "navbar-brand text-white", @style = "font-size: .9em" })</li>

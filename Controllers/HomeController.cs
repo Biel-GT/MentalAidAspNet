@@ -24,7 +24,8 @@ namespace TesteAdoNET.Controllers
         //    _sessao = sessao ?? HttpContext.GetOwinContext().Get<Sessao>();
         //}
 
-        public HomeController() {
+        public HomeController()
+        {
             //sessao = RecuperarSessao();
         }
 
@@ -38,27 +39,27 @@ namespace TesteAdoNET.Controllers
         {
             if (sessao != null)
             {
-                sessao = RecuperarSessao(); 
+                sessao = RecuperarSessao();
                 if (sessao.BuscarSessao() != null) return RedirectToAction("Dashboard");
             }
 
             return View();
         }
 
-        
-        public ActionResult Dashboard(Usuarios usuario)
+
+        public ActionResult Dashboard()
         {
-            if (usuario.Id != 0)
-            {
-                sessao = RecuperarSessao();
-                return View("Dashboard", usuario);
-            }
+            sessao = RecuperarSessao();
+            Usuarios usuarioLogado = sessao.BuscarSessao();
+
+            if (usuarioLogado.Id != 0)
+                return View("Dashboard", usuarioLogado);
             else return RedirectToAction("Login", "Account", new { mensagem = "sessaoInv" });
         }
 
         public ActionResult Testes()
         {
-            sessao = RecuperarSessao(); 
+            sessao = RecuperarSessao();
             if (sessao.BuscarSessao() == null) return RedirectToAction("Login", "Account", new { mensagem = "sessaoInv" });
 
             return View();
@@ -74,7 +75,7 @@ namespace TesteAdoNET.Controllers
                 sessao = RecuperarSessao();
                 Usuarios novoUsuario = new Usuarios { Email = form.Email, Senha = form.Password };
 
-                using (MentalAidEntities ctx = new MentalAidEntities()) 
+                using (MentalAidEntities ctx = new MentalAidEntities())
                 {
                     ctx.Usuarios.AddObject(novoUsuario);
                     ctx.SaveChanges();
@@ -87,7 +88,7 @@ namespace TesteAdoNET.Controllers
             return RedirectToAction("Register", "Account");
         }
 
-        
+
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
@@ -100,7 +101,7 @@ namespace TesteAdoNET.Controllers
             }
             else
             {
-                using(MentalAidEntities ctx = new MentalAidEntities())
+                using (MentalAidEntities ctx = new MentalAidEntities())
                 {
                     var qr = ctx.Usuarios.AsQueryable().Where(u => u.Email == model.Email);
 
@@ -121,7 +122,7 @@ namespace TesteAdoNET.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Login", "Account", new { mensagem = "contaInex"});
+                        return RedirectToAction("Login", "Account", new { mensagem = "contaInex" });
                     }
                 }
             }
@@ -130,19 +131,20 @@ namespace TesteAdoNET.Controllers
         //Logout
         public ActionResult Logout()
         {
-            sessao = RecuperarSessao();  
+            sessao = RecuperarSessao();
             sessao.RemoverSessao();
             return RedirectToAction("Index");
         }
 
 
-        public ActionResult Game(Usuarios usuario)
+        public ActionResult Game()
         {
-            if (usuario.Id != 0)
-            {
-                sessao = RecuperarSessao();
-                return View("Game", usuario);
-            }
+            sessao = RecuperarSessao();
+            Usuarios usuarioLogado = sessao.BuscarSessao();
+
+            if (usuarioLogado.Id != 0)
+                return View("Game", usuarioLogado);
+
             else return RedirectToAction("Login", "Account", new { mensagem = "sessaoInv" });
         }
     }
