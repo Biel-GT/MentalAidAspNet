@@ -5,6 +5,7 @@
     --bg-input: rgba(255, 255, 255, 0.5);
     --blue-middle: rgb(0 113 211);
     --black: #000000;
+    --gray: rgba(255, 255, 255, 0.3);
 }
 
 /* Standart styles */
@@ -25,6 +26,7 @@ body {
     background-position: top center;
     font-family: Arial, Helvetica, sans-serif;
     /*overflow: hidden;*/
+
 }
 
 /* Header styles => where is a name project and menu navigation  */
@@ -47,6 +49,23 @@ main {
     align-items: center;
     height: 70vh;
     margin: 5%;
+    overflow: auto;
+}
+
+.article {
+    margin-bottom: auto;
+    background-color: var(--gray);
+    padding: 1.5em;
+}
+
+::-webkit-scrollbar {
+    background-color: var(--gray);
+    border-radius: 5em;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--blue-middle);
+    border-radius: 15em;
 }
 
 /* Signup section style */

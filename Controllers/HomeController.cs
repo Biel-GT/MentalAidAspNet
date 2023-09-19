@@ -37,15 +37,13 @@ namespace TesteAdoNET.Controllers
 
         public ActionResult Index()
         {
-            if (sessao != null)
-            {
-                sessao = RecuperarSessao();
-                if (sessao.BuscarSessao() != null) return RedirectToAction("Dashboard");
-            }
+            sessao = RecuperarSessao();
+            Usuarios usuarioLogado = sessao.BuscarSessao();
 
-            return View();
+            if (usuarioLogado.Id != 0)
+                return View("Dashboard", usuarioLogado);
+            else return View();
         }
-
 
         public ActionResult Dashboard()
         {
@@ -145,6 +143,15 @@ namespace TesteAdoNET.Controllers
             if (usuarioLogado.Id != 0)
                 return View("Game", usuarioLogado);
 
+            else return RedirectToAction("Login", "Account", new { mensagem = "sessaoInv" });
+        }
+
+        public ActionResult Artigos()
+        {
+            sessao = RecuperarSessao();
+            Usuarios usuarioLogado = sessao.BuscarSessao();
+
+            if (usuarioLogado.Id != 0) return View("Artigos", usuarioLogado);
             else return RedirectToAction("Login", "Account", new { mensagem = "sessaoInv" });
         }
     }

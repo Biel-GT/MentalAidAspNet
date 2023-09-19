@@ -4,72 +4,70 @@
     ViewBag.Title = "Logon";
 }
 
-<main class="m-5 p-5" aria-labelledby="title">
-    <div class="row">
-        <div class="col-md-8">
-            <section id="loginForm">
-                @using (Html.BeginForm("Login", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+<div class="row">
+    <div class="col-md-8">
+        <section id="loginForm">
+            @using (Html.BeginForm("Login", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <h4 id="title">@ViewBag.Title.</h4>
+                <hr />
+                if (ViewBag.Mensagem == "senhaInv" || ViewBag.Mensagem == "contaInex")
                 {
-                    @Html.AntiForgeryToken()
-                    <h4 id="title">@ViewBag.Title.</h4>
-                    <hr />
-                    if (ViewBag.Mensagem == "senhaInv" || ViewBag.Mensagem == "contaInex")
-                    {
-                        <div class="bg-danger bg-opacity-75 text-bg-danger mb-2 p-2">Usuário ou senha inválidos!</div>
-                    }
-                    else if (ViewBag.mensagem == "sucessoCadastro")
-                    {
-                        <div class="bg-success bg-opacity-75 text-bg-success mb-2 p-2">Cadastro realizado</div>
-                    }
-                    else if (ViewBag.mensagem == "sessaoInv")
-                    {
-                        <div class="bg-danger bg-opacity-75 text-bg-danger mb-2 p-2">Sessão Inválida, faça o login novamente!</div>
-                    }   
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                    <div class="row">
-                        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 col-form-label" })
-                        <div class="col-md-10">
-                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="row">
-                        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 col-form-label" })
-                        <div class="col-md-10">
-                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="offset-md-2 col-md-10">
-                            <div class="checkbox">
-                                @Html.CheckBoxFor(m => m.RememberMe)
-                                @Html.LabelFor(m => m.RememberMe)
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="offset-md-2 col-md-10">
-                            <input type="submit" value="Logon" class="btn btn-outline-dark" />
-                        </div>
-                    </div>
-                    <!--<p>-->
-                        @*@Html.ActionLink("Registre-se como um novo usuário", "Register")*@
-                    <!--</p>-->
-                    @* Habilite quando a confirmação da conta estiver ativada para a funcionalidade de redefinição de senha
-            <p>
-                @Html.ActionLink("Esqueceu sua senha?", "ForgotPassword")
-            </p>*@
+                    <div class="bg-danger bg-opacity-75 text-bg-danger mb-2 p-2">Usuário ou senha inválidos!</div>
                 }
-            </section>
-        </div>
-        @*<div class="col-md-4">
+                else if (ViewBag.mensagem == "sucessoCadastro")
+                {
+                    <div class="bg-success bg-opacity-75 text-bg-success mb-2 p-2">Cadastro realizado</div>
+                }
+                else if (ViewBag.mensagem == "sessaoInv")
+                {
+                    <div class="bg-danger bg-opacity-75 text-bg-danger mb-2 p-2">Sessão Inválida, faça o login novamente!</div>
+                }
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="row">
+                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 col-form-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row">
+                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 col-form-label" })
+                    <div class="col-md-10">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="offset-md-2 col-md-10">
+                        <div class="checkbox">
+                            @Html.CheckBoxFor(m => m.RememberMe)
+                            @Html.LabelFor(m => m.RememberMe)
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="offset-md-2 col-md-10">
+                        <input type="submit" value="Logon" class="btn btn-outline-dark" />
+                    </div>
+                </div>
+                <!--<p>-->
+                @*@Html.ActionLink("Registre-se como um novo usuário", "Register")*@
+                <!--</p>-->
+                @* Habilite quando a confirmação da conta estiver ativada para a funcionalidade de redefinição de senha
+                    <p>
+                        @Html.ActionLink("Esqueceu sua senha?", "ForgotPassword")
+                    </p>*@
+            }
+        </section>
+    </div>
+    @*<div class="col-md-4">
             <section id="socialLoginForm">
                 @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
             </section>
         </div>*@
-    </div>
-</main>
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

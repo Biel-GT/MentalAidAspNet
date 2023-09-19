@@ -270,6 +270,7 @@
     <Content Include="Views\Home\Dashboard.cshtml" />
     <Content Include="Views\Home\Game.cshtml" />
     <Content Include="Views\Home\Testes.cshtml" />
+    <Content Include="Views\Home\Artigos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
