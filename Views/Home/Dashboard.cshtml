@@ -1,0 +1,70 @@
+﻿@using TesteAdoNET.Data
+@model Usuarios
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+<div class="w-75">
+    <div class="row">
+        @if (Session["usuario"] != null)
+        {
+            if (Model.Nome != null)
+            {
+                <h3>Olá, @Model.Nome</h3>
+            }
+            else
+            {
+                <h3>Olá, @Model.Email</h3>
+            }
+        }
+
+        <hr />
+    </div>
+    <div class="row mb-5">
+        <h5>Histórico de testes</h5>
+        @* Listar histórico de testes - depois será dinâmico *@
+        <div class="bg-light bg-opacity-50 p-3">
+            <table>
+                <tr>
+                    <th class="w-25">Data</th>
+                    <th>Resultado</th>
+                </tr>
+                <tr>
+                    <td>Hoje</td>
+                    <td>Nível de ansiedade baixo</td>
+                </tr>
+                <tr>
+                    <td>Ontem</td>
+                    <td>Nível de ansiedade alto</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+
+    <div class="row mb-5 bg-light bg-opacity-50">
+        <div class="d-flex justify-content-between p-3">
+            <div>
+                <h5>Teste</h5>
+                <h6>Teste de nível de ansiedade</h6>
+            </div>
+
+            <div class="align-self-center">
+                @*<a class="btn btn-primary btn-md" href="/Home/Testes">Realizar Teste</a>*@
+                <a class="btn btn-primary btn-md" href="https://g1.globo.com/fantastico/interatividade/quiz/ansiedade-faca-o-teste-e-descubra-o-nivel-que-voce-esta.ghtml" target="_blank" rel="noopener">Realizar Teste</a>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row bg-light bg-opacity-50">
+        <div class="p-3">
+            <h5>
+                <a href="https://bvsms.saude.gov.br/ansiedade/" target="_blank" rel="noopener">Artigos relacionados</a>
+            </h5>
+        </div>
+        
+    </div>
+
+
+</div>

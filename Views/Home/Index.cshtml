@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+<style>
+    section {
+        text-align: justify;
+    }
+</style>
+
+<section class="row mt-5" aria-labelledby="aspnetTitle">
+    <div class="row">
+        <h1 id="title">Apresentação do projeto</h1>
+        
+        <p>O presente projeto se prestará a ser um recurso útil para pessoas que sofram com os diversos espectros e variações do transtorno de ansiedade, que oferecerá técnicas de relaxamento guiado para amenização de sintomas e crises causados pelo transtorno.</p>
+        
+        <p>A ansiedade, identificada pelo CID F41, é uma desordem de saúde mental caracterizada por fortes sentimentos de preocupação, ansiedade, medo ou nervosismo em grau suficiente para interferir na realização de atividades diárias.</p>
+    </div>
+
+    <div class="row d-flex flex-row" >
+        @*<img class="w-50" src="~/Content/img/ansiedade.jpg" style="display: inline-block;" />*@    
+
+        <div style="display: inline-block;">
+
+            <p>
+                Exemplos de desordens de ansiedade incluem ataques de pânico, desordem obsessiva-compulsiva e estresse pós-traumático; e os sintomas incluem estresse desproporcional ao evento causador, inabilidade de descansar e relaxar, etc.
+
+                Segundo a Organização Mundial da Saúde, 301 milhões de pessoas no mundo sofrem alguma forma de transtorno de ansiedade, destes 58 milhões são crianças e adolescentes.
+            </p>
+
+        </div>
+        <div class="d-block">
+            <p>
+                Para amenizar o transtorno de ansiedade, especialistas recomendam práticas de respiração, relaxamento, exercícios físicos, terapia, organização, higiene do sono, além de evitar substâncias estimulantes.
+
+                A aplicação funcionará seguindo as orientações e práticas recomendadas, específicas para diferentes perfis de usuários, levando em consideração características como idade, gênero bem como os principais sintomas os quais serão diagnosticados por meio de um teste.
+            </p>
+        </div>
+    </div>
+
+    <div class="row">
+        <p><a href="/Account/Register/" class="btn btn-primary btn-md">Cadastre-se!</a></p>
+        <p><a href="/Account/Login/" class="btn btn-primary btn-md">Login</a></p>
+    </div>
+</section>

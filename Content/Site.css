@@ -1,0 +1,182 @@
+﻿/* Variables */
+:root {
+    --white: #ffffff;
+    --blue-light: #008ac3;
+    --bg-input: rgba(255, 255, 255, 0.5);
+    --blue-middle: rgb(0 113 211);
+    --black: #000000;
+}
+
+/* Standart styles */
+* {
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+    list-style: none;
+    border: 0;
+}
+
+/* Body styles */
+body {
+    background-image: url("./img/background.jpg");
+    background-size: contain;
+    background-attachment: fixed;
+    /* Do not repeat the image */
+    background-position: top center;
+    font-family: Arial, Helvetica, sans-serif;
+    /*overflow: hidden;*/
+}
+
+/* Header styles => where is a name project and menu navigation  */
+header {
+    background-color: var(--blue-light) !important;
+}
+
+.nav-item {
+    margin: 0 .3em;
+}
+
+.container-fluid ul {
+    float: right;
+}
+
+/* Styling main content */
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    margin: 5%;
+}
+
+/* Signup section style */
+#signup {
+    padding: 7em;
+    border: 1px double var(--blue-middle);
+    border-radius: .5em;
+    backdrop-filter: blur(10px);
+}
+
+.subtitle {
+    text-align: center;
+}
+
+/* Styling the Form */
+#loginForm {
+    width: 20em;
+}
+
+    #loginForm .containerInput {
+        margin: 2%;
+        padding: 2%;
+    }
+
+.containerInput label {
+    display: block;
+    margin-top: .7em;
+    font-size: 1.2em;
+}
+
+#Email, #Password {
+    margin: .5em 0;
+}
+
+.containerInput > input:focus {
+    outline: none;
+    /* The outline property is a outside line in border, responsible of standart style inputs, for example */
+}
+
+.containerInput:nth-child(3) > div {
+    width: 100%;
+    /* background-color: var(--bg-input); */
+    text-align: center;
+}
+
+.containerInput > div > input[type='checkbox'] + label,
+input[type='checkbox'] {
+    display: inline-block;
+    padding: 0 0 .7em 0;
+    cursor: pointer;
+}
+
+
+.linkButton {
+    display: block;
+    width: 60%;
+    margin: 0 auto;
+    padding: 0.5em;
+    border-radius: 0.3em;
+    background: var(--bg-input);
+    font-size: .9em;
+    color: var(--black);
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.containerInput > button[type='submit'] {
+    width: 100%;
+    height: 3em;
+    margin: 0 0 1.3em 0;
+    border-radius: 0.3em;
+    background-color: rgb(28 5 197);
+    color: var(--white);
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#lung-container {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#lung-button {
+    width: 100px;
+    height: 100px;
+    background-color: #3498db;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    transition-duration: 5.25s;
+    position: absolute;
+}
+
+#max-lung-circle {
+    width: 300px;
+    height: 300px;
+    background-color: #95d4ff;
+    opacity: .7;
+    border: 2px;
+    border-radius: 50%;
+    position: absolute;
+    border-style: dashed;
+    border-color: #0016e0;
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    font-size: .9em;
+    text-align: center;
+}
+
+@media screen and (max-width: 300px) {
+    body {
+        background-size: 100% 300%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    body {
+        background-size: 100% 600%;
+    }
+}

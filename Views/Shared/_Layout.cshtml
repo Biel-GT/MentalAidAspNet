@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - MentalAid</title>
+    <link rel="stylesheet" href="~/Content/site.css" asp-append-version="true" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm box-shadow mb-3">
+            <div class="container-fluid">
+
+
+                @*<div class="collapse navbar-collapse d-sm-inline-flex justify-content-between">
+            <ul class="navbar-nav flex-grow-1">
+                <li>@Html.ActionLink("Página Inicial", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                <li>@Html.ActionLink("Sobre", "About", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                <li>@Html.ActionLink("Contato", "Contact", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+            </ul>
+            @Html.Partial("_LoginPartial")
+        </div>*@
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+
+                    @if (0 == 1)//SignInManager.IsSignedIn(User))
+                    {
+                        @Html.ActionLink("MentalAid", "Index", "Home", new { area = "" }, new { @class = "navbar-brand text-white" })
+                        @*<a class="navbar-brand text-white" asp-area="" asp-controller="Home" asp-action="Dashboard">MentalAid</a>*@
+                    }
+                    else
+                    {
+                        @Html.ActionLink("MentalAid", "Index", "Home", new { area = "" }, new { @class = "navbar-brand text-white" })
+                        @*@Html.ActionLink("Register", "Register", "Account", new { area = "" }, new { @class = "navbar-brand text-white" })*@
+                        @*@Html.ActionLink("Login", "Login", "Account", new { area = "" }, new { @class = "navbar-brand text-white" })*@
+                        @*<a class="navbar-brand text-white" asp-area="" asp-controller="Home" asp-action="Login">MentalAid</a>*@
+                    }
+                    @* <ul class="navbar-nav flex-grow-1">
+            <li class="nav-item">
+            <a class="text-white text-decoration-none" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+            </li>
+            <li class="nav-item">
+            <a class="text-white text-decoration-none" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </li>
+            </ul> *@
+                    @*<partial name="_LoginPartial" />*@
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container body-content">
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+
+        <footer class="footer text-white">
+            <div class="container">
+                Créditos: Gabriel Souza Teixeira, José Eduardo Cavalcante, Lucas Lima Teixeira, Mariana Carvalho Silva.
+            </div>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

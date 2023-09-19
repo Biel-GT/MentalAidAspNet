@@ -1,0 +1,92 @@
+﻿@using TesteAdoNET.Data
+@model Usuarios
+@{
+    ViewBag.Title = "Lung Simulation";
+}
+
+@*@if (Model.Nome != null)
+{
+    <div>
+        <h5>Calma @Model.Nome, vai ficar tudo bem</h5>
+    </div>
+}
+else
+{
+    <div>
+        <h5>Calma @Model.Email, vai ficar tudo bem</h5>
+    </div>
+}*@
+
+
+<div id="lung-container"></div>
+<div id="max-lung-circle"></div>
+<div id="lung-button">Respire</div>
+
+@*<div class="text mt-5">
+        <p>Este é um assistente de respiração. Utilize o círculo central para guiar sua inspiração e expiração</p>
+    </div>*@
+
+<script>
+    const lungButton = document.getElementById('lung-button');
+    let isExpanding = false;
+    let countdown = 5;
+    let countdownInterval;
+
+    function expandLung() {
+        lungButton.style.transform = 'scale(3.0)';
+        isExpanding = true;
+        // countdown = 5;
+        updateCountdown();
+    }
+
+    function retractLung() {
+        lungButton.style.transform = 'scale(1)';
+        isExpanding = false;
+        clearInterval(countdownInterval);
+    }
+
+    function updateCountdown() {
+
+
+        countdownInterval = setInterval(() => {
+            if (countdown === 0 && $(document).mouseup(() => true)) {
+                retractLung();
+                // lungButton.innerText = 'Release.';
+            } else {
+                countdown--;
+                lungButton.innerText = countdown.toString();
+            }
+        }, 1000); // Update the countdown every second
+    }
+
+
+    lungButton.addEventListener('mousedown', () => {
+        if (!isExpanding) {
+            expandLung();
+        }
+        // Add mouseup event listener to the whole document to handle cases when mouse button is released outside the button
+        document.addEventListener('mouseup', onMouseUp);
+    });
+
+    function onMouseUp() {
+        if (isExpanding) {
+            retractLung();
+        }
+        // Remove the mouseup event listener from the document
+        document.removeEventListener('mouseup', onMouseUp);
+
+        // Start counting up from where it stopped
+        countdownInterval = setInterval(() => {
+            if (countdown === 5) {
+                clearInterval(countdownInterval);
+                /*lungButton.innerText = 'Respire';*/
+            } else {
+                //lungButton.innerText = 'Inspire';
+                countdown++;
+                lungButton.innerText = countdown.toString();
+            }
+        }, 1000); // Update the countdown every second
+
+    }
+</script>
+

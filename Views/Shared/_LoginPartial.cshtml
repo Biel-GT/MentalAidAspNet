@@ -1,0 +1,34 @@
+﻿@using Microsoft.AspNet.Identity
+@using TesteAdoNET.Data
+@model Usuarios
+@if (Session["usuario"] != null)
+{
+    @*using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="navbar-nav">
+            <li>
+                @Html.ActionLink("Olá " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage", @class = "navbar-brand text-white" })
+            </li>
+            <li><a class="navbar-brand text-white" href="javascript:document.getElementById('logoutForm').submit()">Fazer logoff</a></li>
+        </ul>
+    }
+}
+else if (Model != null)
+{*@
+<ul class="navbar-nav">
+    <li>@Html.ActionLink("Dashboard", "Dashboard", "Home", routeValues: Model, htmlAttributes: new { id = "dashboardLink", @class = "navbar-brand text-white", @style = "font-size: .9em" })</li>
+    <li>@Html.ActionLink("Lung Simulator", "Game", "Home", routeValues: Model, htmlAttributes: new { id = "registerLink", @class = "navbar-brand text-white", @style = "font-size: .9em" })</li>
+    @*<li>@Html.ActionLink("Testes", "Testes", "Home", routeValues: null, htmlAttributes: new { id = "testesLink", @class = "navbar-brand text-white", @style = "font-size: .9em" })</li>*@
+    @*<li>@Html.ActionLink("Realizar Teste de Ansiedade", Href("https://g1.globo.com/fantastico/interatividade/quiz/ansiedade-faca-o-teste-e-descubra-o-nivel-que-voce-esta.ghtml"), routeValues: null, htmlAttributes: new { id = "testesLink", @class = "navbar-brand text-white", @style = "font-size: .9em", @target = "_blank", @rel = "noopener" })</li>*@
+    <li>@Html.ActionLink("Logout", "Logout", "Home", routeValues: null, htmlAttributes: new { id = "logoutLink", @class = "navbar-brand text-white", @style = "font-size: .9em" })</li>
+</ul>
+}
+else
+{
+    <ul class="navbar-nav navbar-right">
+        <li>@Html.ActionLink("Registre-se", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "navbar-brand text-white" })</li>
+        <li>@Html.ActionLink("Logon", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "navbar-brand text-white" })</li>
+    </ul>
+}
