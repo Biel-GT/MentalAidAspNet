@@ -12,9 +12,9 @@ namespace TesteAdoNET.App_Start
     {
         public object GetService(Type type)
         {
-            if (type == typeof(MentalAidEntities))
+            if (type == typeof(AppContext))
             {
-                return new MentalAidEntities();
+                return new AppContext();
             }
             return null;
         }

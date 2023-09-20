@@ -1,5 +1,6 @@
 ﻿@using TesteAdoNET.Models
-@model LoginViewModel
+@model LoginUsuarioViewModel
+
 @{
     ViewBag.Title = "Logon";
 }
@@ -33,20 +34,20 @@
                     </div>
                 </div>
                 <div class="row">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 col-form-label" })
+                    @Html.LabelFor(m => m.Senha, new { @class = "col-md-2 col-form-label" })
                     <div class="col-md-10">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                        @Html.PasswordFor(m => m.Senha, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Senha, "", new { @class = "text-danger" })
                     </div>
                 </div>
-                <div class="row">
-                    <div class="offset-md-2 col-md-10">
-                        <div class="checkbox">
-                            @Html.CheckBoxFor(m => m.RememberMe)
-                            @Html.LabelFor(m => m.RememberMe)
+                @*<div class="row">
+                        <div class="offset-md-2 col-md-10">
+                            <div class="checkbox">
+                                @Html.CheckBoxFor(m => m.RememberMe)
+                                @Html.LabelFor(m => m.RememberMe)
+                            </div>
                         </div>
-                    </div>
-                </div>
+                    </div>*@
                 <div class="row">
                     <div class="offset-md-2 col-md-10">
                         <input type="submit" value="Logon" class="btn btn-outline-dark" />

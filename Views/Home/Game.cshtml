@@ -1,21 +1,21 @@
-﻿@using TesteAdoNET.Data
-@model Usuarios
+﻿@using TesteAdoNET.Data.Entities
+@model Usuario
 @{
     ViewBag.Title = "Lung Simulation";
 }
 
 @*@if (Model.Nome != null)
-{
-    <div>
-        <h5>Calma @Model.Nome, vai ficar tudo bem</h5>
-    </div>
-}
-else
-{
-    <div>
-        <h5>Calma @Model.Email, vai ficar tudo bem</h5>
-    </div>
-}*@
+    {
+        <div>
+            <h5>Calma @Model.Nome, vai ficar tudo bem</h5>
+        </div>
+    }
+    else
+    {
+        <div>
+            <h5>Calma @Model.Email, vai ficar tudo bem</h5>
+        </div>
+    }*@
 
 
 <div id="lung-container"></div>
@@ -23,9 +23,9 @@ else
 <div id="lung-button">Respire</div>
 
 @*
-<div class="text mt-5">
-        <p>Este é um assistente de respiração. Utilize o círculo central para guiar sua inspiração e expiração</p>
-</div>
+    <div class="text mt-5">
+            <p>Este é um assistente de respiração. Utilize o círculo central para guiar sua inspiração e expiração</p>
+    </div>
 *@
 
 <script>

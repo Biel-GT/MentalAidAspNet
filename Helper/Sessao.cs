@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Helpers;
 using TesteAdoNET.Data;
+using TesteAdoNET.Data.Entities;
 using TesteAdoNET.Helper;
 
 namespace TesteAdoNET.Helper
@@ -24,17 +25,33 @@ namespace TesteAdoNET.Helper
             _httpContext = httpContext ?? _httpContext.GetOwinContext().Get<HttpContextBase>();
         }
 
-        public Usuarios BuscarSessao()
+        //public Usuarios BuscarSessao()
+        //{
+        //    string sessaoAtiva;
+        //    if (_httpContext.Session["usuario"] == null) sessaoAtiva = "";
+        //    else sessaoAtiva = _httpContext.Session["usuario"].ToString();
+
+        //    if (String.IsNullOrEmpty(sessaoAtiva)) return new Usuarios { Id = 0 };
+        //    else return JsonConvert.DeserializeObject<Usuarios>(sessaoAtiva);
+        //}
+
+        //public void CriarSessao(Usuarios usuario)
+        //{
+        //    string usuarioSerialize = JsonConvert.SerializeObject(usuario);
+        //    _httpContext.Session["usuario"] = usuarioSerialize;
+        //}
+
+        public Usuario BuscarSessao()
         {
             string sessaoAtiva;
             if (_httpContext.Session["usuario"] == null) sessaoAtiva = "";
             else sessaoAtiva = _httpContext.Session["usuario"].ToString();
 
-            if (String.IsNullOrEmpty(sessaoAtiva)) return new Usuarios { Id = 0 };
-            else return JsonConvert.DeserializeObject<Usuarios>(sessaoAtiva);
+            if (String.IsNullOrEmpty(sessaoAtiva)) return new Usuario { Id = 0 };
+            else return JsonConvert.DeserializeObject<Usuario>(sessaoAtiva);
         }
 
-        public void CriarSessao(Usuarios usuario)
+        public void CriarSessao(Usuario usuario)
         {
             string usuarioSerialize = JsonConvert.SerializeObject(usuario);
             _httpContext.Session["usuario"] = usuarioSerialize;

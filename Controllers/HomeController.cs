@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using TesteAdoNET.Data;
+using TesteAdoNET.Data.Entities;
 using TesteAdoNET.Helper;
 using TesteAdoNET.Models;
 
@@ -38,7 +39,7 @@ namespace TesteAdoNET.Controllers
         public ActionResult Index()
         {
             sessao = RecuperarSessao();
-            Usuarios usuarioLogado = sessao.BuscarSessao();
+            Usuario usuarioLogado = sessao.BuscarSessao();
 
             if (usuarioLogado.Id != 0)
                 return View("Dashboard", usuarioLogado);
@@ -48,7 +49,7 @@ namespace TesteAdoNET.Controllers
         public ActionResult Dashboard()
         {
             sessao = RecuperarSessao();
-            Usuarios usuarioLogado = sessao.BuscarSessao();
+            Usuario usuarioLogado = sessao.BuscarSessao();
 
             if (usuarioLogado.Id != 0)
                 return View("Dashboard", usuarioLogado);
@@ -71,11 +72,12 @@ namespace TesteAdoNET.Controllers
             if (ModelState.IsValid)
             {
                 sessao = RecuperarSessao();
-                Usuarios novoUsuario = new Usuarios { Email = form.Email, Senha = form.Password };
+                Usuario novoUsuario = new Usuario { Email = form.Email, Senha = form.Password };
 
-                using (MentalAidEntities ctx = new MentalAidEntities())
-                {
-                    ctx.Usuarios.AddObject(novoUsuario);
+                //using (MentalAidEntities ctx = new MentalAidEntities())
+                //{
+                using (AppContext ctx = new AppContext()) { 
+                    ctx.Usuario.Add/* AddObject*/(novoUsuario);
                     ctx.SaveChanges();
 
                     sessao.CriarSessao(novoUsuario);
@@ -89,41 +91,54 @@ namespace TesteAdoNET.Controllers
 
         // POST: /Account/Login
         [HttpPost]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(LoginViewModel model, string returnUrl)
+        public ActionResult Login(LoginUsuarioViewModel model, string returnUrl)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return RedirectToAction("Login", "Account", model);
-            }
-            else
-            {
-                using (MentalAidEntities ctx = new MentalAidEntities())
+                if (!ModelState.IsValid)
                 {
-                    var qr = ctx.Usuarios.AsQueryable().Where(u => u.Email == model.Email);
+                    return RedirectToAction("Login", "Account", model);
+                }
+                else
+                {
+                    //using (MentalAidEntities ctx = new MentalAidEntities())
+                    //{
+                    //    var qr = ctx.Usuarios.AsQueryable().Where(u => u.Email == model.Email);
 
-                    if (qr.Count() > 0)
+                    using (AppContext ctx = new AppContext())
                     {
-                        var usuario = qr.ToList();
+                        var qr = ctx.Usuario.AsQueryable().Where(u => u.Email == model.Email);
 
-                        if (usuario[0].Senha == model.Password)
+                        if (qr.Count() > 0)
                         {
-                            sessao = RecuperarSessao();
-                            sessao.CriarSessao(usuario[0]);
-                            return View("Dashboard", usuario[0]);
+                            var usuario = qr.ToList();
+
+                            if (usuario[0].Senha == model.Senha)
+                            {
+                                sessao = RecuperarSessao();
+                                sessao.CriarSessao(usuario[0]);
+                                return View("Dashboard", usuario[0]);
+                            }
+                            else
+                            {
+                                return RedirectToAction("Login", "Account", new { mensagem = "senhaInv" });
+                            }
                         }
                         else
                         {
-                            return RedirectToAction("Login", "Account", new { mensagem = "senhaInv" });
+                            return RedirectToAction("Login", "Account", new { mensagem = "contaInex" });
                         }
-                    }
-                    else
-                    {
-                        return RedirectToAction("Login", "Account", new { mensagem = "contaInex" });
                     }
                 }
             }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            
         }
 
         //Logout
@@ -138,7 +153,7 @@ namespace TesteAdoNET.Controllers
         public ActionResult Game()
         {
             sessao = RecuperarSessao();
-            Usuarios usuarioLogado = sessao.BuscarSessao();
+            Usuario usuarioLogado = sessao.BuscarSessao();
 
             if (usuarioLogado.Id != 0)
                 return View("Game", usuarioLogado);
@@ -149,7 +164,7 @@ namespace TesteAdoNET.Controllers
         public ActionResult Artigos()
         {
             sessao = RecuperarSessao();
-            Usuarios usuarioLogado = sessao.BuscarSessao();
+            Usuario usuarioLogado = sessao.BuscarSessao();
 
             if (usuarioLogado.Id != 0) return View("Artigos", usuarioLogado);
             else return RedirectToAction("Login", "Account", new { mensagem = "sessaoInv" });
